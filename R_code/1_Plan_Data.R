@@ -115,13 +115,13 @@ for (y in 2006:2015) {
               plan_name=last(plan_name),parent_org=last(parent_org),contract_date=last(contract_date),
               year=last(year))
   
-  write_rds(plan.year,paste0(path.data.final,"/ma_data_",y,".rds"))
+  write_rds(plan.year,paste0(here("/ma_data_",y,".rds")))
 }
 
-full.ma.data <- readRDS(paste0(path.data.final,"/ma_data_2006.rds"))
+full.ma.data <- readRDS(paste0(here("/ma_data_2006.rds")))
 for (y in 2007:2015) {
-  full.ma.data <- rbind(full.ma.data,readRDS(paste0(path.data.final,"/ma_data_",y,".rds")))
+  full.ma.data <- rbind(full.ma.data,readRDS(paste0(here("/ma_data_",y,".rds"))))
 }
 
-write_tsv(full.ma.data,path=paste(path.data.final,"/Full_Contract_Plan_County.txt",sep=""),append=FALSE,col_names=TRUE)
-write_rds(full.ma.data,paste(path.data.final,"/full_ma_data.rds",sep=""))
+write_tsv(full.ma.data,path=paste(here("/Full_Contract_Plan_County.txt",sep="")),append=FALSE,col_names=TRUE)
+write_rds(full.ma.data,paste(here("/full_ma_data.rds",sep="")))
