@@ -11,7 +11,7 @@ pacman::p_load(tidyverse, ggplot2, dplyr, lubridate, stringr, readxl, data.table
 ## First set all file/folder paths
 #########################################################################
 
-source('R_code/paths.R')
+source("~/ECON 470/Medicare-Advantage/R_code/paths.R")
 
 #########################################################################
 ## Build plan-level dataset
@@ -29,15 +29,15 @@ source(paste(path.code,"/8_FFS_Costs.R",sep=""),local=TRUE,echo=FALSE)
 #########################################################################
 ## Organize final data
 #########################################################################
-full.ma.data <- read_rds("data/full_ma_data.rds")
-contract.service.area <- read_rds("data/contract_service_area.rds")
-star.ratings <- read_rds("data/star_ratings.rds")
-ma.penetration.data <- read_rds("data/ma_penetration.rds")
-plan.premiums <- read_rds("data/plan_premiums.rds")
-risk.rebate.final <- read_rds("data/risk_rebate.rds")
-benchmark.final <- read_rds("data/ma_benchmark.rds") %>%
+full.ma.data <- readRDS("data/full_ma_data.rds")
+contract.service.area <- readRDS("data/contract_service_area.rds")
+star.ratings <- readRDS("data/star_ratings.rds")
+ma.penetration.data <- readRDS("data/ma_penetration.rds")
+plan.premiums <- readRDS("data/plan_premiums.rds")
+risk.rebate.final <- readRDS("data/risk_rebate.rds")
+benchmark.final <- readRDS("data/ma_benchmark.rds") %>%
   mutate(ssa=as.double(ssa))
-ffs.costs.final <- read_rds("data/ffs_costs.rds")
+ffs.costs.final <- readRDS("data/ffs_costs.rds")
 
 final.data <- full.ma.data %>%
   inner_join(contract.service.area %>% 
@@ -130,8 +130,8 @@ final.data <- final.data %>%
     TRUE ~ NA_real_
   ))
 
-write_tsv(final.data,file=paste(path.data.final,"/Final_MA_Data.txt",sep=""),append=FALSE,col_names=TRUE)
-write_rds(final.data,paste(path.data.final,"/final_ma_data.rds",sep=""))
+write_tsv(final.data,file=paste(here("/Final_MA_Data.txt"),sep=""),append=FALSE,col_names=TRUE)
+write_rds(final.data,paste(here("/final_ma_data.rds",sep="")))
 
 
 

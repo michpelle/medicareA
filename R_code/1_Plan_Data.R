@@ -25,7 +25,7 @@ for (y in 2006:2015) {
     
     ## Basic contract/plan information
     ma.path=paste0(path.data.ma,"/Monthly MA and PDP Enrollment by CPSC/Monthly MA and PDP Enrollment by CPSC/Extracted Data/CPSC_Contract_Info_",y,"_",m,".csv")
-    contract.info=read_csv(ma.path,
+    contract.info=read.csv(ma.path,
                            skip=1,
                            col_names = c("contractid","planid","org_type","plan_type",
                                          "partd","snp","eghp","org_name","org_marketing_name",
