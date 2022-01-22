@@ -1,0 +1,33 @@
+---
+title: "MedicareAdvantage"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+here
+```
+
+```{r cars}
+head(final.data)
+full.ma.data %>% group_by(fips, year) %>% select(fips, year) %>% summarize(plan_count=n())
+ ggplot(aes(x=as.factor(year),y=plan_count)) +
+ stat_summary(fun.y="mean", geom="bar") +
+ labs(
+ x="Year",
+ y="Number of Plans",
+ title="Average Number of Plans per County"
+ ) + scale_y_continuous(labels=comma) +
+ theme_bw()
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
