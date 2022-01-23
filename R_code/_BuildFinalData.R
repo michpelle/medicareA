@@ -29,7 +29,7 @@ source(paste(path.code,"/8_FFS_Costs.R",sep=""),local=TRUE,echo=FALSE)
 #########################################################################
 ## Organize final data
 #########################################################################
-full.ma.data <- readRDS("data/full_ma_data.rds")
+full.ma.data <- readRDS("/data/full_ma_data.rds")
 contract.service.area <- readRDS("data/contract_service_area.rds")
 star.ratings <- readRDS("data/star_ratings.rds")
 ma.penetration.data <- readRDS("data/ma_penetration.rds")
