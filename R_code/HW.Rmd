@@ -13,9 +13,20 @@ getwd()
 #source(paste(path.code, "/_BuildFinalData.R", sep = ""), local = TRUE, echo = FALSE)
 #source('1_Plan_Data.R')
 source("~/ECON 470/Medicare-Advantage/R_code/paths.R")
+
+source("1_Plan_Data.R",local=TRUE,echo=FALSE)
+source(paste(path.code,"/2_Plan_Characteristics.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/3_Service_Areas.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/4_Penetration_Files.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/5_Star_Ratings.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/6_Risk_Rebates.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/7_MA_Benchmark.R",sep=""),local=TRUE,echo=FALSE)
+source(paste(path.code,"/8_FFS_Costs.R",sep=""),local=TRUE,echo=FALSE)
+
 #source("_BuildFinalData.R")
-source('1_Plan_Data.R')
+#source('1_Plan_Data.R')
 #source(paste(path.code,"/_BuildFinalData.R",sep=""),local=TRUE,echo=FALSE)
+source(paste("~/ECON 470/Medicare-Advantage/R_code/_BuildFinalData.R",sep=""),local=TRUE,echo=FALSE)
 ```
 
 ```{r cars}
