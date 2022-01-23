@@ -6,11 +6,19 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-here
+```
+
+```{r}
+getwd()
+#source(paste(path.code, "/_BuildFinalData.R", sep = ""), local = TRUE, echo = FALSE)
+#source('1_Plan_Data.R')
+source("~/ECON 470/Medicare-Advantage/R_code/paths.R")
+#source("_BuildFinalData.R")
+source('1_Plan_Data.R')
+#source(paste(path.code,"/_BuildFinalData.R",sep=""),local=TRUE,echo=FALSE)
 ```
 
 ```{r cars}
-head(final.data)
 full.ma.data %>% group_by(fips, year) %>% select(fips, year) %>% summarize(plan_count=n())
  ggplot(aes(x=as.factor(year),y=plan_count)) +
  stat_summary(fun.y="mean", geom="bar") +
