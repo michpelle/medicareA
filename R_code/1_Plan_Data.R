@@ -7,6 +7,16 @@
 ## are made. Some data sources are also only available in certain years.
 #########################################################################
 
+#here("~",'data','medicare-advantage')
+#setwd(path.data.ma)
+getwd()
+
+#library(here)
+#set_here(path="../")
+here::here()
+
+source("~/ECON 470/Medicare-Advantage/R_code/paths.R")
+
 monthlist_2006=c("07", "08", "09", "10", "11", "12")
 monthlist_2007=c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
 monthlist_2008=c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
@@ -18,13 +28,12 @@ monthlist_2013=c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11
 monthlist_2014=c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
 monthlist_2015=c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
 
-
 for (y in 2006:2015) {
   monthlist=get(paste0("monthlist_",y))
   for (m in monthlist) {
     
     ## Basic contract/plan information
-    ma.path=paste0(path.data.ma,"/monthly-ma-and-pdp-enrollment-by-cpsc/CPSC_Contract_Info_",y,"_",m,".csv")
+    ma.path = paste0(path.data.ma,"/monthly-ma-and-pdp-enrollment-by-cpsc/CPSC_Contract_Info_",y,"_",m,".csv")
     contract.info=read.csv(ma.path,
                            skip=1,
                            col_names = c("contractid","planid","org_type","plan_type",
@@ -55,7 +64,7 @@ for (y in 2006:2015) {
     
     ## Enrollments per plan
     ma.path=paste0(path.data.ma,"/monthly-ma-and-pdp-enrollment-by-cpsc/CPSC_Enrollment_Info_",y,"_",m,".csv")    
-    enroll.info=read_csv(ma.path,
+    enroll.info=read.csv(ma.path,
                          skip=1,
                          col_names = c("contractid","planid","ssa","fips","state","county","enrollment"),
                          col_types = cols(
@@ -68,6 +77,7 @@ for (y in 2006:2015) {
                            enrollment = col_double()
                          ),na="*")
     
+    print(enroll.info[0])
 
     ## Merge contract info with enrollment info
     plan.data = contract.info %>%
@@ -123,5 +133,6 @@ for (y in 2007:2015) {
   full.ma.data <- rbind(full.ma.data,readRDS(paste0(here("/ma_data_",y,".rds"))))
 }
 
-write_tsv(full.ma.data,path=paste(here("/Full_Contract_Plan_County.txt",sep="")),append=FALSE,col_names=TRUE)
-write_rds(full.ma.data,paste(here("/full_ma_data.rds",sep="")))
+write_tsv(full.ma.data,path=paste(here("/data/medicare-advantage","/Full_Contract_Plan_County.txt",sep="")),append=FALSE,col_names=TRUE)
+write_rds(full.ma.data,paste(here("/data/medicare-advantage","/full_ma_data.rds",sep="")))
+
