@@ -2,6 +2,7 @@
 ## Read in service area data */
 ##############################################################################
 
+source("~/ECON 470/Medicare-Advantage/R_code/paths.R")
 
 #########################################################################
 ## Set local "month lists" to identify different files relevant for each year
@@ -30,7 +31,7 @@ for (y in 2006:2015) {
     step=step+1
     
     ## Pull service area data by contract/month
-    ma.path=paste0(path.data.ma,"/Monthly MA Contract Service Area/Extracted Data/MA_Cnty_SA_",y,"_",m,".csv")
+    ma.path=paste0(path.data.ma,"/monthly-ma-contract-service-area/MA_Cnty_SA_",y,"_",m,".csv")
     service.area=read_csv(ma.path,skip=1,
                           col_names=c("contractid","org_name","org_type","plan_type","partial","eghp",
                                       "ssa","fips","county","state","notes"),
